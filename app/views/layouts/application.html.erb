@@ -8,9 +8,39 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <script src="https://kit.fontawesome.com/dabd92ad6d.js" crossorigin="anonymous"></script>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" href="application.css" />
+    
+  <%= stylesheet_link_tag 'application' %>
   </head>
 
   <body>
+     <header>
+            <span>GreenTeaClub</span>
+            <div>
+                <% if user_signed_in? %>
+                      <li>
+                        <%= link_to 'Post', new_post_path %>
+                      </li>
+                      <li>
+                        <%= link_to "Log Out", destroy_user_session_path, method: :delete %>
+                      </li>
+                <% else %>
+                      <li>
+                        <%= link_to "Sign Up", new_user_registration_path %>
+                      </li>
+                      <li>
+                        <%= link_to "Sign In", new_user_session_path %>
+                      </li>
+                 <% end %>
+                 
+                  
+            </div>
+     </header>
     <%= yield %>
   </body>
 </html>
