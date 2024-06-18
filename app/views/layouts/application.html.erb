@@ -2,45 +2,84 @@
 <html>
   <head>
     <title>GreenTeaClub</title>
+   
+   
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
-  <script src="https://kit.fontawesome.com/dabd92ad6d.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/dabd92ad6d.js" crossorigin="anonymous"></script>
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <link rel="stylesheet" href="application.css" />
+    
+     <link rel="stylesheet" href="application.css" />
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+   
     
   <%= stylesheet_link_tag 'application' %>
+    
   </head>
 
-  <body>
-     <header>
-            <span>GreenTeaClub</span>
-            <div>
+  <body class="d-flex flex-column vh-100">
+   <header class="bg-Light shadow-sm">
+     <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container">
+          <a class="navbar-brand text-secondary fw-bold" href="/">
+            <span>Green Tea Club</span>
+          </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+              <ul class="navbar-nav me-auto text-secondary p-md-1 mb-2 mb-lg-0">
                 <% if user_signed_in? %>
-                      <li>
-                        <%= link_to 'Post', new_post_path %>
+                      <li class="nav-item">
+                        <%= link_to (new_post_path) do %>
+                          <i class="fa-solid fa-pen"></i>
+                            投稿
+                         <% end %>
                       </li>
-                      <li>
-                        <%= link_to "Log Out", destroy_user_session_path, method: :delete %>
+                      <li class="nav-item">
+                        <%= link_to (user_path(current_user.id)) do %>
+                          <i class="fa-solid fa-house"></i>
+                            マイページ
+                        <% end %>
+                      </li>
+                      <li class="nav-item">
+                        <%= link_to destroy_user_session_path, method: :delete do %>
+                          <i class="fa-solid fa-right-from-bracket"></i>
+                            ログアウト
+                        <% end %>
                       </li>
                 <% else %>
-                      <li>
-                        <%= link_to "Sign Up", new_user_registration_path %>
+                      <li class="nav-item">
+                        <%= link_to (new_user_registration_path) do %>
+                          <i class="fa-solid fa-user-plus"></i>
+                            新規登録
+                        <% end %>
                       </li>
-                      <li>
-                        <%= link_to "Sign In", new_user_session_path %>
+                      <li class="nav-item">
+                        <%= link_to (new_user_session_path) do %>
+                          <i class="fa-solid fa-right-to-bracket"></i>
+                            ログイン
+                        <% end %>
                       </li>
+                    
                  <% end %>
+              </ul>
+                 <form class="d-flex" role="search">
+                   <input class="form-control me-4" type="search" placeholder="Search" aria-label="Search">
+                   <button class="btn btn-outline-success" type="submit">検索</button>
+                 </form>
                  
                   
-            </div>
+             </div>
+           </div>
+         </nav>
+        
      </header>
     <%= yield %>
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>
