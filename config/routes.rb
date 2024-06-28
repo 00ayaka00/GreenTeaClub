@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  
+   get '/favicon.ico', to: redirect('/assets/favicon.ico')
+   get '/.env', to: 'your_controller#your_action'
+   post '/', to: 'your_controller#your_action'
  
   devise_for :users
   root to: 'homes#top'
