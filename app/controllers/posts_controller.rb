@@ -13,10 +13,13 @@ class PostsController < ApplicationController
   
   def index
     #@post = Post.page(params[:page])
-    @posts = Post.includes(:image).all
+   
+    @posts = Post.all
+   
   end
 
   def show
+    @post =  Post.find(params[:id])
   end
 
   def edit

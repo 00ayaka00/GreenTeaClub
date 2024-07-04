@@ -1,1 +1,54 @@
-post index
+<main>
+    
+   <p id ="notice">
+     <%= flash[:notice] %>
+   </p>
+   
+   <div class="container px-5 px-sm-0">
+     <div class="row">
+ 
+     
+       <div class="col-md-8 offset-md-1"> 
+   
+       
+         <h2>TIME LINE</h2>
+           <table class="table table-hover table-inverse">
+             <thead>
+               <tr>
+                <th> </th>
+                <th>ショップ名</th>
+                <th>説明</th>
+                <th colspan="3"></th>
+               </tr>
+             </thead>
+             <tbody>
+                <% @posts.each do |post| %>
+                  <div>
+                    <% if post.get_image.present? %>
+                       <% post.get_image.each do |image| %>
+                          <%= link_to post_path(post.id) do %>
+                            <%= image_tag url_for(image), size: "200x200" %>
+                          <% end %>
+                            <p><%= image_tag post.user.get_profile_image(70,70) %> <%= post.user.name %></p>
+                            <p>ショップ名: <%= post.shop_name %></p>
+                            <p>説明: <%= post.caption %></p>
+                            <p>投稿日時: <%= post.created_at.strftime('%Y/%m/%d') %></p>
+                       <% end %>
+                    <% else %>
+                       <%= link_to post_path(post.id) do %>
+                         <p></p>
+                       <% end %>
+                         <p><%= image_tag post.user.get_profile_image(70,70) %>  <%= post.user.name %></p>
+                         <p>ショップ名: <%= post.shop_name %></p>
+                         <p>説明: <%= post.caption %></p>
+                         <p>投稿日時: <%= post.created_at.strftime('%Y/%m/%d') %></p>
+    
+                    <% end %>
+                  </div>
+                <% end %>
+　　　      </tbody>
+          </table>
+       </div>
+    </div>
+  </div>
+ </main>

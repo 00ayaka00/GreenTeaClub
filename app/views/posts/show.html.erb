@@ -1,1 +1,22 @@
-post show
+<div>
+  <% if @post.get_image.present? %>
+    <% @post.get_image.each do |image| %>
+      <%= link_to post_path(@post.id) do %>
+        <%= image_tag url_for(image), size: "200x200" %>
+      <% end %>
+
+      <p><%= image_tag @post.user.get_profile_image(70,70) %> <%= @post.user.name %></p>
+      <p>ショップ名: <%= @post.shop_name %></p>
+      <p>説明: <%= @post.caption %></p>
+      <p>投稿日時: <%= @post.created_at.strftime('%Y/%m/%d') %></p>
+    <% end %>
+  <% else %>
+    <%= link_to post_path(@post.id) do %>
+      <p></p>
+    <% end %>
+    <p><%= image_tag @post.user.get_profile_image(70,70) %> <%= @post.user.name %></p>
+    <p>ショップ名: <%= @post.shop_name %></p>
+    <p>説明: <%= @post.caption %></p>
+    <p>投稿日時: <%= @post.created_at.strftime('%Y/%m/%d') %></p>
+  <% end %>
+</div>

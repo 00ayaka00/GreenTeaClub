@@ -1,5 +1,4 @@
-<h1>Homes#about</h1>
-<p>Find me in app/views/homes/about.html.erb</p>
+
 
 <html>
     <head>
@@ -10,11 +9,27 @@
              <%= flash[:notice] %>
            </p> 
            <div class="container">
-             <div class="row">
-                <h1 class="px-3 mx-auto">
+             <div class="col-8">
+              <div class="row">
+                <h1 class=" px-3 mx-auto">
                    Welcome to
                  <strong>Green Tea Club!</strong>
                 </h1>
+              </div>
+             </div>
+             <div>
+                 <p>会員登録ありがとうございます！</p>
+                 <p>---------------------------</p>
+                 <p>---------------------------------------------</p>
+                 <p>-----------------</p>
+                 <p>---------------------------------</p>
+             </div>
+             <div class="btn-wrapper col-5 mx-auto">
+               <div class="row">
+                 <a class="btn btn-info btn-sm btn-block mb-3" href="/posts">TIME LINEへ</a>
+               </div>
+               <div class="row">
+                 <a class="btn btn-success btn-sm btn-block " href='/users/<%= current_user.id %>'>My ページへ</a>
              </div>
            </div>
         </main>
