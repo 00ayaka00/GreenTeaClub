@@ -1,4 +1,6 @@
-<p id="notice"></p>
+<p id ="notice">
+    <%= flash[:notice] %>
+</p>
 <div class="errors">
              <% if @user.errors.any? %>
                 <%= @user.errors.count %>件の

@@ -1,6 +1,8 @@
 <div>
-  <h3><%= @user.name %></h3>
+  
   <%= image_tag @user.get_profile_image(120, 120) %>
+  <h4><%= @user.name %></h4>
+  <tr>introduction <%= @user.introduction %></tr>
    <% if @user == current_user %>
      <p><%= link_to "プロフィール編集", edit_user_path(@user) %></p>
    <% end %>
@@ -26,7 +28,7 @@
       <p>ショップ名: <%= post.shop_name %></p>
       <p>説明: <%= post.caption %></p>
       <p>投稿日時: <%= post.created_at.strftime('%Y/%m/%d') %></p>
-    
+
   <% end %>
 </div>
 <% end %>
