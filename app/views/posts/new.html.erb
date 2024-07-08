@@ -1,3 +1,15 @@
+　　　　　<div class="errors">
+             <% if @post.errors.any? %>
+                <%= @post.errors.count %>件のエラー
+                <u1>
+                  <% @post.errors.full_messages.each do |message| %>
+                     <li><%= message %></li>
+                  <% end %>
+                </u1>
+             <% end %>
+         </div>
+
+
 <h1>画像投稿フォーム</h1>
 <%= form_with model: @post do |f| %>
   <h4>Image</h4>
