@@ -26,6 +26,37 @@
   <% if @post.user == current_user %>
                        <td><%= link_to "Edit", edit_post_path(@post), class: "btn btn-sm btn-success" %></td>
                        <td><%= link_to "Destroy", post_path(@post), class: "btn btn-sm btn-danger", method: :delete, "data-confirm" => "本当に消しますか?" %></td>
-                    
+
    <% end %>
+   
+</div>
+ <% if @post.favorited_by?(current_user) %>
+    <p>
+      <%= link_to post_favorite_path(@post), method: :delete do %>
+        <i class="fa-solid fa-thumbs-up"></i><%= @post.favorites.count %> いいね
+      <% end %>
+    </p>
+    <% else %>
+    <p>
+      <%= link_to post_favorite_path(@post), method: :post do %>
+        <i class="fa-regular fa-thumbs-up"></i> <%= @post.favorites.count %> いいね
+      <% end %>
+    </p>
+  <% end %>
+<div>
+  <p>コメント件数：<%= @post.post_comments.count %></p>
+  <% @post.post_comments.each do |post_comment| %>
+    <p><%= image_tag post_comment.user.get_profile_image(50,50) %></p>
+    <%= post_comment.user.name %>
+    <%= post_comment.created_at.strftime('%Y/%m/%d') %><br><%= post_comment.comment %>
+    <% if post_comment.user == current_user %>
+      <br><%= link_to "削除", post_post_comment_path(post_comment.post, post_comment), class: "btn btn-sm btn-danger", method: :delete, "data-confirm" => "本当に消しますか?" %>
+    <% end %>
+  <% end %>
+</div>
+<div>
+  <%= form_with model: [@post, @post_comment] do |f| %>
+    <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
+    <%= f.submit "送信する" %>
+  <% end %>
 </div>
