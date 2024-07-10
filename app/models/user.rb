@@ -13,10 +13,7 @@ class User < ApplicationRecord
    validates :name, length: { in: 2..20 }
    validates :introduction, length: { maximum: 50 }
    
-   def introduction
-    # ユーザーの紹介文を返す処理を実装してください
-    self[:introduction] 
-  end
+  
   
    def get_profile_image(width,height)
     unless profile_image.attached?
