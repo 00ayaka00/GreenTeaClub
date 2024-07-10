@@ -1,8 +1,11 @@
+<p id ="notice">
+    <%= flash[:notice] %>
+</p>
 <div>
   
   <%= image_tag @user.get_profile_image(120, 120) %>
   <h4><%= @user.name %></h4>
-  <tr>introduction <%= @user.introduction %></tr>
+  <p>introduction <%= @user.introduction %></p>
    <% if @user == current_user %>
      <p><%= link_to "プロフィール編集", edit_user_path(@user) %></p>
    <% end %>
@@ -19,6 +22,10 @@
       <p>ショップ名: <%= @post.shop_name %></p>
       <p>説明: <%= @post.caption %></p>
       <p>投稿日時: <%= @post.created_at.strftime('%Y/%m/%d') %></p>
+      <% if post.user == current_user %>
+     　　<td><%= link_to "Edit", edit_post_path(post), class: "btn btn-sm btn-success" %></td>
+      　<td><%= link_to "Destroy", post_path(post), class: "btn btn-sm btn-danger", method: :delete, "data-confirm" => "本当に消しますか?" %></td>
+　<% end %>
     <% end %>
    <% else %>
     <%= link_to post_path(post.id) do %>
@@ -28,7 +35,12 @@
       <p>ショップ名: <%= post.shop_name %></p>
       <p>説明: <%= post.caption %></p>
       <p>投稿日時: <%= post.created_at.strftime('%Y/%m/%d') %></p>
+      <% if post.user == current_user %>
+        <td><%= link_to "Edit", edit_post_path(post), class: "btn btn-sm btn-success" %></td>
+        <td><%= link_to "Destroy", post_path(post), class: "btn btn-sm btn-danger", method: :delete, "data-confirm" => "本当に消しますか?" %></td>
+      <% end %>
 
   <% end %>
+  
 </div>
 <% end %>
