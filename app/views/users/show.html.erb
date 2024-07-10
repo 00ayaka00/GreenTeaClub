@@ -5,7 +5,7 @@
   
   <%= image_tag @user.get_profile_image(120, 120) %>
   <h4><%= @user.name %></h4>
-  <p>introduction <%= @user.introduction %></p>
+  <p><%= @user.introduction %></p>
    <% if @user == current_user %>
      <p><%= link_to "プロフィール編集", edit_user_path(@user) %></p>
    <% end %>
