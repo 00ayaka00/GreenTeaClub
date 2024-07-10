@@ -16,11 +16,11 @@
 
 <h1>画像投稿フォーム</h1>
 <%= form_with model: @post do |f| %>
-  <h4>Image</h4>
+  <p>Image</p>
   <%= f.file_field :image, accept: "image/*" %>
-  <h4>Shop Name</h4>
+  <p>Shop Name</p>
   <%= f.text_field :shop_name %>
-  <h4>Introduction</h4>
+  <p>Introduction</p>
   <%= f.text_area :caption %><br>
   <%= f.submit '投稿' %>
 <% end %>
