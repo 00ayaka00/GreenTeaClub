@@ -12,15 +12,22 @@
                 </u1>
              <% end %>
          </div>
+<div class="containar px-5 px-sm-8">
+    <div class="row">
+         <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
 
-
-<h1>画像投稿フォーム</h1>
-<%= form_with model: @post do |f| %>
-  <p>画像</p>
-  <%= f.file_field :image, accept: "image/*" %>
-  <p>ショップ名</p>
-  <%= f.text_field :shop_name %>
-  <p>説明</p>
-  <%= f.text_area :caption %><br>
-  <%= f.submit '投稿' %>
-<% end %>
+             <h2>画像投稿フォーム</h2>
+                 <%= form_with model: @post do |f| %>
+                     <p>画像</p>
+                     <%= f.file_field :image, accept: "image/*" %>
+                     <p>ショップ名</p>
+                     <%= f.text_field :shop_name %>
+                     <p>説明</p>
+                     <%= f.text_area :caption %><br>
+                     <div class="form-group">
+                         <input type="submit" name="commit" value="投稿" class="btn btn-primary" data-disable-with="投稿中">
+                     </div>
+                 <% end %>
+         </div>
+    </div>
+</div>

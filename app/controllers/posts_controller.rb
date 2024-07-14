@@ -20,7 +20,7 @@ class PostsController < ApplicationController
   def index
     #@post = Post.page(params[:page])
    
-    @posts = Post.all
+    @posts = Post.all || []
    
   end
 

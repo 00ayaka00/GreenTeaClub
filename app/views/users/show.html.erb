@@ -1,48 +1,61 @@
 <p id ="notice">
     <%= flash[:notice] %>
 </p>
-<div>
+<div class="containar px-5 px-sm-0">
+  <div class="row">
+    <div class="col-md-3 offset-md-1">
+      
+   
+      <%= image_tag @user.get_profile_image(120, 120) %>
+      <h4><%= @user.name %></h4>
+      <p><%= @user.introduction %></p>
+      <% if @user == current_user %>
+        <p><%= link_to "プロフィール編集", edit_user_path(@user) %></p>
+      <% end %>
+    </div>
+    
+     <div class="col-md-8">
+         <h2>会員詳細ページ</h2>
+              <table class="table table-hover table-inverse">
+ 
   
-  <%= image_tag @user.get_profile_image(120, 120) %>
-  <h4><%= @user.name %></h4>
-  <p><%= @user.introduction %></p>
-   <% if @user == current_user %>
-     <p><%= link_to "プロフィール編集", edit_user_path(@user) %></p>
-   <% end %>
-</div>
+                        <% @posts.each do |post| %>
+                            <div>
+                                <% if post.get_image.present? %>
+                                       <% post.get_image.each do |image| %>
+                                            <%= link_to post_path(post.id) do %>
+                                                <%= image_tag url_for(image), size: "200x200" %>
+                                            <% end %>
+                                            <p><%= image_tag @post.user.get_profile_image(70,70) %> <%= @post.user.name %></p>
+                                            <p>ショップ名: <%= @post.shop_name %></p>
+                                            <p>説明: <%= @post.caption %></p>
+                                            <p>投稿日時: <%= @post.created_at.strftime('%Y/%m/%d') %></p>
+                                            <p><%= link_to "#{post.post_comments.count} コメント", post_path(post.id) %></p>
+                                            <% if post.user == current_user %>
+     　                                        　<td><%= link_to "Edit", edit_post_path(post), class: "btn btn-sm btn-success" %></td>
+      　                                         <td><%= link_to "Destroy", post_path(post), class: "btn btn-sm btn-danger", method: :delete, "data-confirm" => "本当に消しますか?" %></td>
+    　                                       <% end %>
+                                       <% end %>
+                                <% else %>
+                                       <%= link_to post_path(post.id) do %>
+                                            <p>画像なし</p>
+                                       <% end %>
+                                       <p><%= image_tag post.user.get_profile_image(70,70) %>  <%= post.user.name %></p>
+                                       <p>ショップ名: <%= post.shop_name %></p>
+                                       <p>説明: <%= post.caption %></p>
+                                       <p>投稿日時: <%= post.created_at.strftime('%Y/%m/%d') %></p>
+                                       <p><%= link_to "#{post.post_comments.count} コメント", post_path(post.id) %></p>
+                                       <% if post.user == current_user %>
+                                            <td><%= link_to "Edit", edit_post_path(post), class: "btn btn-sm btn-success" %></td>
+                                            <td><%= link_to "Destroy", post_path(post), class: "btn btn-sm btn-danger", method: :delete, "data-confirm" => "本当に消しますか?" %></td>
+                                       <% end %>
 
-<% @posts.each do |post| %>
-<div>
-  <% if post.get_image.present? %>
-    <% post.get_image.each do |image| %>
-      <%= link_to post_path(post.id) do %>
-        <%= image_tag url_for(image), size: "200x200" %>
-      <% end %>
-      <p><%= image_tag @post.user.get_profile_image(70,70) %> <%= @post.user.name %></p>
-      <p>ショップ名: <%= @post.shop_name %></p>
-      <p>説明: <%= @post.caption %></p>
-      <p>投稿日時: <%= @post.created_at.strftime('%Y/%m/%d') %></p>
-      <p><%= link_to "#{post.post_comments.count} コメント", post_path(post.id) %></p>
-      <% if post.user == current_user %>
-     　　<td><%= link_to "Edit", edit_post_path(post), class: "btn btn-sm btn-success" %></td>
-      　<td><%= link_to "Destroy", post_path(post), class: "btn btn-sm btn-danger", method: :delete, "data-confirm" => "本当に消しますか?" %></td>
-　<% end %>
-    <% end %>
-   <% else %>
-    <%= link_to post_path(post.id) do %>
-        <p>画像なし</p>
-      <% end %>
-      <p><%= image_tag post.user.get_profile_image(70,70) %>  <%= post.user.name %></p>
-      <p>ショップ名: <%= post.shop_name %></p>
-      <p>説明: <%= post.caption %></p>
-      <p>投稿日時: <%= post.created_at.strftime('%Y/%m/%d') %></p>
-      <p><%= link_to "#{post.post_comments.count} コメント", post_path(post.id) %></p>
-      <% if post.user == current_user %>
-        <td><%= link_to "Edit", edit_post_path(post), class: "btn btn-sm btn-success" %></td>
-        <td><%= link_to "Destroy", post_path(post), class: "btn btn-sm btn-danger", method: :delete, "data-confirm" => "本当に消しますか?" %></td>
-      <% end %>
-
-  <% end %>
+                                <% end %>
   
+                            </div>
+                        <% end %>
+
+              </table>
+     </div>
+  </div>
 </div>
-<% end %>
