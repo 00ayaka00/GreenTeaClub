@@ -1,9 +1,18 @@
 Rails.application.routes.draw do
   
-   
+   devise_for :admin, skip: [:registrations, :password], controllers: {
+    sessions: 'admin/sessions'
+  }
+  
+  namespace :admin do
+    get 'dashboards', to: 'dashboards#index'
+    resources :users, only: [:destroy]
+  end
+
    get '/.env', to: 'your_controller#your_action'
    post '/', to: 'your_controller#your_action'
-   
+ 
+ scope module: :public do 
  
   devise_for :users
   root to: 'homes#top'
@@ -19,3 +28,5 @@ Rails.application.routes.draw do
   get "/search", to: "searches#search"
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
+
+end 
