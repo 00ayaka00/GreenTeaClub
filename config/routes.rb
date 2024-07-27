@@ -21,7 +21,12 @@ Rails.application.routes.draw do
       resource :favorite, only: [:create, :destroy]
       resources :post_comments, only: [:create, :destroy]
   end
-  resources :users, only: [:show, :index, :edit, :update]
+  resources :users, only: [:show, :index, :edit, :update] do
+    resource :relationships, only: [:create, :destroy]
+   	get "followings" => "relationships#followings", as: "followings"
+   	get "followers" => "relationships#followers", as: "followers"
+  end
+    
   resources :photos, only: [:new, :create, :show, :index]
   
   get '/about' => 'homes#about', as: "about"
