@@ -6,6 +6,7 @@ class Post < ApplicationRecord
   
   validates :shop_name, presence: true
   validates :caption, presence: true
+  
 
  def get_image
   image if image.attached?

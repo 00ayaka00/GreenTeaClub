@@ -3,6 +3,17 @@
 </p>
     <div class="containar px-5 px-sm-8">
          <div class="row mx-5 mx-auto justify-content-center">
+                    
+                    　<div class="errors">
+             <% if @post_comment.errors.any? %>
+                <%= @post_comment.errors.count %>件のエラー
+                <u1>
+                  <% @post_comment.errors.full_messages.each do |message| %>
+                     <li><%= message %></li>
+                  <% end %>
+                </u1>
+             <% end %>
+         </div>
 
 
 
