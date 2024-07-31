@@ -1,3 +1,7 @@
+<div class="containar px-5 pxsm-0">
+    <div class="row">
+         <div class="col-md-10 mx-auto px-sm-0">
+
 <h2>Follower Users</h2>
 <% if @users.exists? %>
   <table class="table">
@@ -16,11 +20,11 @@
         <td>フォロー数: <%= user.followings.count %></td>
         <td>フォロワー数: <%= user.followers.count %></td>
         <td>
-            <% if current_user != @user %>
-                <% if current_user.following?(@user) %>
-                   <%= link_to "フォロー外す", user_relationships_path(@user.id), method: :delete, class: url_options[:class].presence || "btn btn-info" %>
+            <% if current_user != user %>
+                <% if current_user.following?(user) %>
+                   <%= link_to "フォロー外す", user_relationships_path(user.id), method: :delete, class: url_options[:class].presence || "btn btn-info" %>
                 <% else %>
-                   <%= link_to "フォローする", user_relationships_path(@user.id), method: :post, class: url_options[:class].presence || "btn btn-success" %>
+                   <%= link_to "フォローする", user_relationships_path(user.id), method: :post, class: url_options[:class].presence || "btn btn-success" %>
                 <% end %>
             <% end %>
         </td>
@@ -33,3 +37,7 @@
 <% else %>
   <p>ユーザーはいません</p>
 <% end %>
+
+</div>
+</div>
+</div
