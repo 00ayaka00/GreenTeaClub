@@ -1,8 +1,8 @@
 <p id ="notice">
     <%= flash[:notice] %>
 </p>
-    <div class="containar px-5 px-sm-8">
-         <div class="row mx-5 mx-auto justify-content-center">
+    <div class="containar px-sm-8">
+         <div class="row mx-5 mx-auto justify-content-center  taxt-wrap" style="word-wrap: break-word;">
                     
                     　<div class="errors">
              <% if @post_comment.errors.any? %>
@@ -18,16 +18,16 @@
 
 
                      <% if @post.get_image.present? %>
-                     <div class="col-md-5 offset-md-1">
+                     
                              <% @post.get_image.each do |image| %>
-                                     <%= link_to post_path(@post.id) do %>
-                                            <%= image_tag url_for(image), size: "450x450" %>
-                                     <% end %>
-                                     </div>
-                                     <div class="col-md-3">
+                                 <div class="col-md-5">
+                                     <%= image_tag url_for(image), size: "450x450", class: "img-fluid" %>
+                                 </div>
+                     
+                                     <div class="col-md-4">
                                          <p><%= image_tag @post.user.get_profile_image(70,70), class: "mt-3 rounded-circle"; %> <%= @post.user.name %></p>
+                                         <h5><%= @post.caption %></h5>
                                          <p>ショップ名: <%= @post.shop_name %></p>
-                                         <p>説明: <%= @post.caption %></p>
                                          <p>投稿日時: <%= @post.created_at.strftime('%Y/%m/%d') %></p>
 
                                          <% if @post.user == current_user %>
@@ -62,7 +62,7 @@
                                           <div class="col-md-2">
                                                 <p>コメント件数：<%= @post.post_comments.count %></p>
                                                 <% @post.post_comments.each do |post_comment| %>
-                                                       <p>
+                                                       
                                                           <%= link_to user_path(post_comment.user) do %>
                                                                <%= image_tag post_comment.user.get_profile_image(50,50), class: "mt-3 rounded-circle"; %>
                                                                <%= post_comment.user.name %>
@@ -71,7 +71,7 @@
                                                           <div class="ps-5">
                                                               <%= post_comment.comment %>
                                                           </div>
-                                                       </p>
+                                                       
                                                        <% if post_comment.user == current_user %>
                                                                 <br><%= link_to "削除", post_post_comment_path(post_comment.post, post_comment), class: "btn btn-sm btn-danger", method: :delete, "data-confirm" => "本当に消しますか?" %>
                                                        <% end %>
@@ -86,10 +86,11 @@
                                                 <p></p>
                                          <% end %>
 
-                                         <div class="col-md-4 px-5">
+                                         <div class="col-md-6 px-3">
                                          <p><%= image_tag @post.user.get_profile_image(70,70), class: "mt-3 rounded-circle"; %> <%= @post.user.name %></p>
+                                         
+                                         <h5><%= @post.caption %></h5>
                                          <p>ショップ名: <%= @post.shop_name %></p>
-                                         <p>説明: <%= @post.caption %></p>
                                          <p>投稿日時: <%= @post.created_at.strftime('%Y/%m/%d') %></p>
 
                                          <% if @post.user == current_user %>
@@ -123,19 +124,18 @@
                                          </div>
                                          </div>
 
-                                          <div class="col-md-3">
+                                          <div class="col-md-4">
                                                  <p>コメント件数：<%= @post.post_comments.count %></p>
                                                  <% @post.post_comments.each do |post_comment| %>
-                                                         <p>
+                                                         
                                                             <%= link_to user_path(post_comment.user) do %>
-                                                                 <%= image_tag post_comment.user.get_profile_image(50,50), class: "mt-3 rounded-circle"; %>
-                                                                 <%= post_comment.user.name %>
+                                                                <%= image_tag post_comment.user.get_profile_image(50,50), class: "mt-3 rounded-circle"; %>
+                                                                <%= post_comment.user.name %>
                                                             <% end %>
                                                             <%= post_comment.created_at.strftime('%Y/%m/%d') %>
                                                             <div class="ps-5">
-                                                            <%= post_comment.comment %>
+                                                                <%= post_comment.comment %>
                                                             </div>
-                                                         </p>
                                                          <% if post_comment.user == current_user %>
                                                                  <br><%= link_to "削除", post_post_comment_path(post_comment.post, post_comment), class: "btn btn-sm btn-danger", method: :delete, "data-confirm" => "本当に消しますか?" %>
                                                          <% end %>

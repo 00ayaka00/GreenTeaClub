@@ -1,6 +1,5 @@
 class ApplicationController < ActionController::Base
 
-  before_action :authenticate_user!, except: [:top, :index], unless: :admin_controller?
   before_action :configure_authentication
 
 
