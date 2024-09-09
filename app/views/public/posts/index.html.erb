@@ -1,92 +1,64 @@
 <main>
 
-   <p id ="notice">
-     <%= flash[:notice] %>
-   </p>
+  <p id="notice">
+    <%= flash[:notice] %>
+  </p>
 
-   <div class="container px-6 px-sm-0">
-     <div class="row">
-          <img src="<%= asset_path('hilla-5419527_1280.jpg') %>" alt="画像の説明">
+  <div class="container px-6 px-sm-0">
+    <div class="row">
+      <img src="<%= asset_path('hilla-5419527_1280.jpg') %>" alt="画像の説明">
 
+      <div class="col-md-10 offset-md-1 text-wrap" style="word-wrap: break-word;">
+        <h2>TIME LINE</h2>
 
-       <div class="col-md-8 offset-md-1">
+        <% @posts.each do |post| %>
+          <div class="post-item">
+            <%= link_to user_path(post.user) do %>
+              <p>
+                <%= image_tag post.user.get_profile_image(70, 70), class: "mt-3 rounded-circle" %>
+                <%= post.user.name %>
+              </p>
+            <% end %>
 
-
-         <h2>TIME LINE</h2>
-
-             <tbody>
-                <% @posts.each do |post| %>
-                  <div>
-                    <% if post.get_image.present? %>
-                       <% post.get_image.each do |image| %>
-
-                           <%= link_to user_path(post.user) do %>
-                            <p><%= image_tag post.user.get_profile_image(70,70), class: "mt-3 rounded-circle px-2"; %> <%= post.user.name %></p>
-                           <% end %>
-                           <div class="mx-5">
-                            <%= image_tag url_for(image), size: "200x200" %>
-                            <%= link_to post_path(post.id) do %>
-                               <h5><%= post.caption %></h5>
-                            <% end %>
-                            <p>ショップ名: <%= post.shop_name %></p>
-                            <p>投稿日時: <%= post.created_at.strftime('%Y/%m/%d') %></p>
-                            <% if post.favorited_by?(current_user) %>
-                            <p>
-                              <%= link_to post_favorite_path(post), method: :delete do %>
-                                  <i class="fa-solid fa-thumbs-up"></i><%= post.favorites.count %> いいね
-                              <% end %>
-                            </p>
-                            </div>
-                            <% else %>
-                            <p>
-                               <%= link_to post_favorite_path(post), method: :post do %>
-                                  <i class="fa-regular fa-thumbs-up"></i> <%= post.favorites.count %> いいね
-                               <% end %>
-                            </p>
-                            <% end %>
-                            <div class="border-bottom mt-4 mb-4">
-                              <p><%= link_to "#{post.post_comments.count} コメント", post_path(post.id) %></p>
-                            </div>
-                       <% end %>
-                    <% else %>
-
-                        <%= link_to user_path(post.user) do %>
-                         <p><%= image_tag post.user.get_profile_image(70,70), class: "mt-3 rounded-circle"; %>  <%= post.user.name %></p>
-                        <% end %>
-                        <div class="mx-5">
-                         <%= link_to post_path(post.id) do %>
-                           <h5><%= post.caption %></h5>
-                        <% end %>
-                         <p>ショップ名: <%= post.shop_name %></p>
-                         <p>投稿日時: <%= post.created_at.strftime('%Y/%m/%d') %></p>
-                         <% if post.favorited_by?(current_user) %>
-                            <p>
-                              <%= link_to post_favorite_path(post), method: :delete do %>
-                                  <i class="fa-solid fa-thumbs-up"></i><%= post.favorites.count %> いいね
-                              <% end %>
-                            </p>
-                            <% else %>
-                            <p>
-                               <%= link_to post_favorite_path(post), method: :post do %>
-                                  <i class="fa-regular fa-thumbs-up"></i> <%= post.favorites.count %> いいね
-                               <% end %>
-                            </p>
-                            <% end %>
-                             <div class="border-bottom mt-4 mb-4">
-                               <p><%= link_to "#{post.post_comments.count} コメント", post_path(post.id) %></p>
-                             </div>
-                            <% end %>
-                        </div>
-                    </div>
+            <div class="mx-5">
+              <% if post.get_image.present? %>
+                <% post.get_image.each do |image| %>
+                  <%= image_tag url_for(image), size: "200x200", alt: "投稿画像" %>
                 <% end %>
-                <div class="center-block" style="display: flex; justify-content: center; letter-spacing: 5px;" >
-                  <%= paginate @posts %>
-                 
-                </div>
-               
-　　　      </tbody>
-          </table>
-       </div>
+              <% end %>
+
+              <%= link_to post_path(post.id) do %>
+                <h5><%= post.caption %></h5>
+              <% end %>
+
+              <p>ショップ名: <%= post.shop_name %></p>
+              <p>投稿日時: <%= post.created_at.strftime('%Y/%m/%d') %></p>
+              
+              <p>
+                <% if post.favorited_by?(current_user) %>
+                  <%= link_to post_favorite_path(post), method: :delete do %>
+                    <i class="fa-solid fa-thumbs-up"></i><%= post.favorites.count %> いいね
+                  <% end %>
+                <% else %>
+                  <%= link_to post_favorite_path(post), method: :post do %>
+                    <i class="fa-regular fa-thumbs-up"></i> <%= post.favorites.count %> いいね
+                  <% end %>
+                <% end %>
+              </p>
+            
+
+            <div class="border-bottom mt-4 mb-4">
+              <p><%= link_to "#{post.post_comments.count} コメント", post_path(post.id) %></p>
+            </div>
+            </div>
+          </div>
+        <% end %>
+
+        <div class="center-block" style="display: flex; justify-content: center; letter-spacing: 5px;">
+          <%= paginate @posts %>
+        </div>
+
+      </div>
     </div>
   </div>
- </main>
+</main>

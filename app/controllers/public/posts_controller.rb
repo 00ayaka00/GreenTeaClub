@@ -21,7 +21,7 @@ class Public::PostsController < ApplicationController
   def index
     #@post = Post.page(params[:page])
    
-    @posts = Post.page(params[:page]) || []
+    @posts = Post.order(created_at: :desc).page(params[:page]) || []
    
   end
 
