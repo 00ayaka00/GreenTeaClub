@@ -30,4 +30,11 @@ class Post < ApplicationRecord
       @post = Post.all
     end
   end
+  
+  def self.rank_by_favorites
+    Post.left_joins(:favorites)
+        .select('posts.*, COUNT(favorites.id) AS favorites_count')
+        .group('posts.id')
+        .order('favorites_count DESC')
+  end
 end

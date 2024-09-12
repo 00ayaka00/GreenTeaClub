@@ -52,7 +52,16 @@ class Public::PostsController < ApplicationController
       render :edit
 
     end
-  end 
+  end
+  
+ def ranking
+    @posts = Post.joins(:user)
+                 .select('posts.*, users.name AS user_name, COUNT(favorites.id) AS favorites_count')
+                 .left_joins(:favorites)
+                 .group('posts.id')
+                 .order('favorites_count DESC')
+                 .page(params[:page])
+  end
   
   private
 

@@ -43,13 +43,13 @@ class User < ApplicationRecord
   end
    
   
-   def get_profile_image(width,height)
+  def get_profile_image(width, height)
     unless profile_image.attached?
       file_path = Rails.root.join('app/assets/images/tea-2975184_1280.webp')
       profile_image.attach(io: File.open(file_path), filename: 'default-image.webp', content_type: 'image/webp')
     end
     profile_image.variant(resize_to_limit: [width, height]).processed
-   end
+  end
    
    def self.looks(search, word)
     if search == "perfect_match"
