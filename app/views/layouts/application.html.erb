@@ -34,46 +34,46 @@
             <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
               <ul class="navbar-nav me-auto text-secondary p-md-1 mb-2 mb-lg-0">
                  <li class="nav-item">
-                         <%= link_to (posts_path) do %>
+                         <%= link_to (posts_path), class: "custom-link" do %>
                           <i class="fa-solid fa-house"></i>
                             タイムライン
                          <% end %>
                 </li>
-                
+
                 <% if user_signed_in? %>
                       <li class="nav-item px-2">
-                        <%= link_to (new_post_path) do %>
+                        <%= link_to (new_post_path), class: "custom-link" do %>
                           <i class="fa-solid fa-pen"></i>
                             投稿
                          <% end %>
                       </li>
                       <li class="nav-item px-2">
-                        <%= link_to (user_path(current_user.id)) do %>
+                        <%= link_to (user_path(current_user.id)), class: "custom-link" do %>
                           <i class="fa-solid fa-user"></i>
                             マイページ
                         <% end %>
                       </li>
                       <li class="nav-item px-2">
-                        <%= link_to ranking_posts_path do %>
-                          <i class="fa-solid fa-trophy"></i> 
-                           ランキング
+                        <%= link_to (ranking_posts_path), class: "custom-link" do %>
+                          <i class="fa-solid fa-trophy"></i>
+                            ランキング
                         <% end %>
                       </li>
                       <li class="nav-item px-2">
-                        <%= link_to destroy_user_session_path, method: :delete do %>
+                        <%= link_to (destroy_user_session_path), class: "custom-link", method: :delete do %>
                           <i class="fa-solid fa-right-from-bracket"></i>
                             ログアウト
                         <% end %>
                       </li>
                 <% else %>
                       <li class="nav-item px-2">
-                        <%= link_to (new_user_registration_path) do %>
+                        <%= link_to (new_user_registration_path), class: "custom-link" do %>
                           <i class="fa-solid fa-user-plus"></i>
                             新規登録
                         <% end %>
                       </li>
                       <li class="nav-item px-2">
-                        <%= link_to (new_user_session_path) do %>
+                        <%= link_to (new_user_session_path), class: "custom-link" do %>
                           <i class="fa-solid fa-right-to-bracket"></i>
                             ログイン
                         <% end %>
@@ -93,7 +93,7 @@
 
      </header>
      <main class="md-auto">
-         
+
           <%= yield %>
      </main>
      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
