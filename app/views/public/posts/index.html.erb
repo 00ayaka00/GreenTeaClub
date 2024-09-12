@@ -23,7 +23,7 @@
             <div class="mx-5">
               <% if post.get_image.present? %>
                 <% post.get_image.each do |image| %>
-                  <%= image_tag url_for(image), size: "200x200", alt: "投稿画像" %>
+                  <%= image_tag url_for(image), size: "500x500", alt: "投稿画像" %>
                 <% end %>
               <% end %>
 
