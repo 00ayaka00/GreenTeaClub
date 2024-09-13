@@ -10,7 +10,7 @@ class Public::PostsController < ApplicationController
     @post.user_id = current_user.id
     if @post.save
       flash[:notice] = "投稿が完了しました"
-      redirect_to post_path(@post)
+      redirect_to posts_path
     else
        @user = current_user
        @posts = Post.order(created_at: :desc)

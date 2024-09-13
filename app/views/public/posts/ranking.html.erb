@@ -30,7 +30,7 @@
         <td><%= link_to post.shop_name, post_path(post) %></td>
         <td><%= post.favorites_count %></td>
         <td>
-          <%= link_to 'show', post_path(post) %>
+          <%= link_to 'show', post_path(post), class:"btn btn-sm btn-outline-secondary" %>
         </td>
       </tr>
     <% end %>
