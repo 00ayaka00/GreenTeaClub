@@ -1,5 +1,8 @@
 
 
+.nav-item {
+  padding: 6px;
+}
 .custom-link {
   color: inherit; 
   text-decoration: none; 
