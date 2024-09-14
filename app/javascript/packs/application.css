@@ -23,6 +23,51 @@
 
 
 
+
 li {
   list-style-type: none; /* リストマーカーを非表示にする */
 }
+
+/* ページネーション全体 */
+.pagination {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* ページネーションのリンク文字（a） */
+.pagination a {
+  color: #818181;
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  font-weight: bold;
+  padding: 10px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 14px; /* デフォルトサイズ（小さい文字） */
+}
+
+/* ページネーションのリンク文字にカーソルを載せた時 */
+.pagination a:hover {
+  background-color: #84b8eb;
+  color: #FFF;
+  border-radius: 100%;
+  padding: 10px;
+  font-size: 14px; /* ホバー時も小さい文字サイズ */
+}
+
+/* 現在のページの数字 */
+.current {
+  font-weight: bold;
+  color: #84b8eb;
+  padding: 10px;
+  font-size: 20px; /* 現在のページ番号のサイズ（大きい文字） */
+}
+
+/* 数字のページリンク */
+.pagination .page {
+  font-size: 20px; /* 数字のリンクのフォントサイズ */
+}
+
