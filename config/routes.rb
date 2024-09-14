@@ -23,8 +23,9 @@ Rails.application.routes.draw do
        collection do
         get 'ranking'  
        end
-      resource :favorite, only: [:create, :destroy]
-      resources :post_comments, only: [:create, :destroy]
+       resources :users, only: [:show]
+       resource :favorite, only: [:create, :destroy]
+       resources :post_comments, only: [:create, :destroy]
   end
   resources :users, only: [:show, :index, :edit, :update] do
     resource :relationships, only: [:create, :destroy]

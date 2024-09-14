@@ -10,9 +10,14 @@ class Public::UsersController < ApplicationController
   end
 
   def show
+   if params[:id] == "sign_out"
+    # ログアウト処理を行う
+    sign_out(current_user)
+    redirect_to root_path, notice: "ログアウトしました"
+  else
     @user = User.find(params[:id])
     @posts = @user.posts.page(params[:page])
-    #@post =  Post.find(params[:id])
+  end
   end
 
   def edit
