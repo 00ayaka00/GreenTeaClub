@@ -32,7 +32,6 @@ Rails.application.routes.draw do
    	get "followers" => "relationships#followers", as: "followers"
   end
 
-  resources :photos, only: [:new, :create, :show, :index]
 
   get '/about' => 'homes#about', as: "about"
   get "/search", to: "searches#search"

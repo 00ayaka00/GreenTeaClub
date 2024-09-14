@@ -44,7 +44,6 @@
               <%= f.submit "更新" %>
             </div>
   
-            <br><%= link_to "Show", post_path(@post) %>
-            <%= link_to "Back", "/posts", class: "hoge" %></br>
+            <%= link_to "Back", user_path(@post.user.id), class: "hoge" %></br>
          <% end %>
 </main>

@@ -32,7 +32,10 @@ class Public::PostsController < ApplicationController
 
   def edit
      @post = Post.find(params[:id])
-      redirect_to posts_path if current_user != @post.user
+      unless current_user == @post.user
+       flash[:alert] = "この投稿を編集する権限がありません"
+       redirect_to user_path(current_user)
+      end
     
   end
   
