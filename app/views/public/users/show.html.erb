@@ -44,6 +44,12 @@
 
       <% if @user == current_user %>
         <p><%= link_to "プロフィール編集", edit_user_path(@user), class: "btn btn-sm btn-outline-secondary" %></p>
+        <li class="btn btn-sm btn-outline-secondary p-3">
+            <%= link_to (new_post_path), class: "custom-link" do %>
+                 <i class="fa-solid fa-pen"></i>
+                     投稿をする
+            <% end %>
+        </li>
       <% end %>
     </div>
 
