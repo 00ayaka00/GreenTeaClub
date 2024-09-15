@@ -1,28 +1,25 @@
 
-               <p id ="notice">
-                  <%= flash[:notice] %>
-               </p>
-                    <div class="container ">
-                     
-                          
-                      
-                      <div class="row">
-                            <img src="<%= asset_path('hilla-5419527_1280.jpg') %>" alt="画像の説明">
-                        <div class="col-10 max-auto">
+<p id ="notice">
+    <%= flash[:notice] %>
+</p>
+<div class="container ">
+    <div class="row">
+        <img src="<%= asset_path('hilla-5419527_1280.jpg') %>" alt="画像の説明">
+              <div class="col-10 max-auto">
                             <p>Welcome to Green Tea Club...</p>
                             <p>日本茶でほっとひといき<i class="fa-brands fa-pagelines"></i></p>
                             <p>皆さんのおすすめのお茶やお店をつぶやいて共有しよう</p>
                             <p>登録してスタート！！</p>
-                        </div>
+              </div>
 
-                        <div class="btn-wrapper col-5 mx-auto">
-                          <div class="row">
+              <div class="btn-wrapper col-5 mx-auto">
+                    <div class="row">
                             <a class="btn btn-info btn-sm btn-block mb-3 sign_in" href="/users/sign_in">Log in</a>
-                          </div>
-                          <div class="row">
-                            <a class="btn btn-success btn-sm btn-block sign_up" href="/users/sign_up">Sign up</a>
-                          </div>
-                        </div>
-                      </div>
                     </div>
+                    <div class="row">
+                            <a class="btn btn-success btn-sm btn-block sign_up" href="/users/sign_up">Sign up</a>
+                    </div>
+              </div>
+    </div>
+</div>
          

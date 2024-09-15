@@ -5,12 +5,7 @@
   <div class="container">
     <div class="row">
        <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
-
-         <h1>投稿編集</h1>
-
-
-
-         <div class="errors">
+           <div class="errors">
              <% if @post.errors.any? %>
                 <%= @post.errors.count %>件のエラー
                 <u1>
@@ -21,8 +16,7 @@
              <% end %>
          </div>
 
-
-
+         <h1>投稿編集</h1>
 
           <%= form_with model: @post, url: post_path(@post.id), method: :patch do |f| %>
             

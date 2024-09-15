@@ -1,35 +1,33 @@
 
 <div class="container px-6 px-md-5">
     <div class="row">
-<h1>全ユーザー一覧</h1>
- <div class="col">
+        <h1>全ユーザー一覧</h1>
+        <div class="col">
+            <table class="center-table">
+                <thead>
+                   <tr>
+                      <th>ユーザー名</th>
+                      <th>ユーザーアドレス</th>
+                      <th></th>
+                      <th></th>
+                  </tr>
+                </thead>
+                <tbody>
 
-<table class="center-table">
-      <thead>
-           <tr>
-                <th>ユーザー名</th>
-                <th>ユーザーアドレス</th>
-                <th></th>
-                <th></th>
-           </tr>
-      </thead>
-      <tbody>
-
-         <% @users.each do |user| %>
-             <tr class="border-bottom mt-4 mb-4">
-                  <td><%= user.name %></td>
-                  <td><%= user.email %></td>
-                  <td><%= link_to 'ユーザーページを見る', user_path(user), class:"btn btn-sm btn-outline-secondary" %></td>
-                  <td><%= link_to '削除', admin_user_path(user), class:"btn btn-sm btn-outline-secondary", method: :delete, data: { confirm: '本当に削除しますか？' } %></td>
-
-         <% end %>
-         </tbody>
-         </table>
-         <div class="center-block" style="display: flex; justify-content: center; letter-spacing: 5px;">
-              <%= paginate @users %>
-          </div>
-</div>
-</div>
+                   <% @users.each do |user| %>
+                      <tr class="border-bottom mt-4 mb-4">
+                         <td><%= user.name %></td>
+                         <td><%= user.email %></td>
+                         <td><%= link_to 'ユーザーページを見る', user_path(user), class:"btn btn-sm btn-outline-secondary" %></td>
+                         <td><%= link_to '削除', admin_user_path(user), class:"btn btn-sm btn-outline-secondary", method: :delete, data: { confirm: '本当に削除しますか？' } %></td>
+                   <% end %>
+                </tbody>
+            </table>
+            <div class="center-block" style="display: flex; justify-content: center; letter-spacing: 5px;">
+                <%= paginate @users %>
+            </div>
+        </div>
+    </div>
 </div>
 
 </html>

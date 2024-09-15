@@ -3,29 +3,27 @@
              <%= flash[:notice] %>
            </p> 
            <div class="container">
-             
-              <div class="row">
+                <div class="row">
                    <img src="<%= asset_path('hilla-5419527_1280.jpg') %>" alt="画像の説明">
-                <h1 class=" px-3 mx-auto">
-                   Welcome to
-                 <strong>Green Tea Club!</strong>
-                </h1>
-              
-             </div>
-             <div>
-                 <p>Green Tea Clubへようこそ！</p>
-                 <p>ログインいただきありがとうございます</p><br>
-                 <p>ここはおいしいお茶やお茶を使ったお菓子・料理など、お茶に関するショップ情報を共有できるお茶のSNSです</p>
-                 <p>みんなにお勧めを伝えたい！ お勧めを知りたい！</p>
-                 <p>情報を共有してみんなでおすすめを共有しよう!</p>
-                 <p>早速始めてみましょう！！</p>
-             </div>
-             <div class="btn-wrapper col-5 mx-auto">
-               <div class="row">
-                 <a class="btn btn-info btn-sm btn-block mb-3" href="/posts">TIME LINEへ</a>
-               </div>
-               <div class="row">
-                 <a class="btn btn-success btn-sm btn-block " href='/users/<%= current_user.id %>'>My ページへ</a>
-             </div>
+                   <h1 class=" px-3 mx-auto">
+                      Welcome to
+                      <strong>Green Tea Club!</strong>
+                   </h1>
+                </div>
+                <div>
+                   <p>Green Tea Clubへようこそ！</p>
+                   <p>ログインいただきありがとうございます</p><br>
+                   <p>ここはおいしいお茶やお茶を使ったお菓子・料理など、お茶に関するショップ情報を共有できるお茶のSNSです</p>
+                   <p>みんなにお勧めを伝えたい！ お勧めを知りたい！</p>
+                   <p>情報を共有してみんなでおすすめを共有しよう!</p>
+                   <p>早速始めてみましょう！！</p>
+                </div>
+                <div class="btn-wrapper col-5 mx-auto">
+                   <div class="row">
+                       <a class="btn btn-info btn-sm btn-block mb-3" href="/posts">TIME LINEへ</a>
+                   </div> 
+                   <div class="row">
+                       <a class="btn btn-success btn-sm btn-block " href='/users/<%= current_user.id %>'>My ページへ</a>
+                   </div>
+                </div>
            </div>
-        
