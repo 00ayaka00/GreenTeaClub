@@ -1,9 +1,5 @@
 Rails.application.routes.draw do
 
-  devise_for :users, controllers: {
-   sessions: 'users/sessions'
- }
-
 
    devise_for :admin, skip: [:registrations, :password], controllers: {
     sessions: 'admin/sessions'
@@ -28,8 +24,8 @@ Rails.application.routes.draw do
         get 'ranking'  
        end
        resources :users, only: [:show]
-       resource :favorite, only: [:create, :destroy]
-       resources :post_comments, only: [:create, :destroy]
+      resource :favorite, only: [:create, :destroy]
+      resources :post_comments, only: [:create, :destroy]
   end
   resources :users, only: [:show, :index, :edit, :update] do
     resource :relationships, only: [:create, :destroy]
