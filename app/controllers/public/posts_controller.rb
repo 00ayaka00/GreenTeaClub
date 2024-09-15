@@ -1,10 +1,10 @@
 class Public::PostsController < ApplicationController
- 
+
 
   def new
     @post = Post.new
   end
-  
+
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
@@ -17,12 +17,12 @@ class Public::PostsController < ApplicationController
        render :new
     end
   end
-  
+
   def index
     #@post = Post.page(params[:page])
-   
+
     @posts = Post.order(created_at: :desc).page(params[:page]) || []
-   
+
   end
 
   def show
@@ -36,18 +36,18 @@ class Public::PostsController < ApplicationController
        flash[:alert] = "この投稿を編集する権限がありません"
        redirect_to user_path(current_user)
       end
-    
+
   end
-  
+
   def destroy
     post = Post.find(params[:id])
     post.destroy
     redirect_to '/posts'
   end
-  
+
   def update
     @post = Post.find(params[:id])
-    
+
     if @post.update(post_params)
       flash[:notice] = "更新が完了しました"
       redirect_to post_path(@post.id)
@@ -56,7 +56,7 @@ class Public::PostsController < ApplicationController
 
     end
   end
-  
+
  def ranking
     @posts = Post.joins(:user)
                  .select('posts.*, users.name AS user_name, COUNT(favorites.id) AS favorites_count')
@@ -64,8 +64,9 @@ class Public::PostsController < ApplicationController
                  .group('posts.id')
                  .order('favorites_count DESC')
                  .page(params[:page])
+    @page = (params[:page] || 1).to_i
   end
-  
+
   private
 
   def post_params

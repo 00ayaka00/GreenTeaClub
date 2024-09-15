@@ -3,14 +3,14 @@
 </p>
 
 <div class="errors">
-             <% if @user.errors.any? %>
-                <%= @user.errors.count %>件のエラー
-                <u1>
-                  <% @user.errors.full_messages.each do |message| %>
-                     <li><%= message %></li>
-                  <% end %>
-                </u1>
-             <% end %>
+    <% if @user.errors.any? %>
+        <%= @user.errors.count %>件のエラー
+        <u1>
+           <% @user.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+        </u1>
+    <% end %>
 </div>
 
 <div class="containar px-5 px-sm-8">

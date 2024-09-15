@@ -15,7 +15,6 @@
 
           <tr>
               <td>フォロー数: <%= @user.followings.count %> <i class="fa-solid fa-leaf"></i></td>
-
               <td>フォロワー数: <%= @user.followers.count %></td>
        　  </tr>
        　  <tr>
@@ -129,7 +128,7 @@
 
                             </div>
                         <% end %>
-             <%= paginate @posts %>
+                        <%= paginate @posts %>
 
               </div>
      </div>
