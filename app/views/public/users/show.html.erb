@@ -30,7 +30,7 @@
       </table>
        <img src="<%= asset_path('divider-2461548_64012.png') %>" alt="画像の説明" class="w-75  d-block mx-auto">
 
-       <% if current_user.present? %> 
+       <% if current_user.present? %>
           <% if current_user != @user %>
             <% if current_user.following?(@user) %>
               <%= link_to "フォロー外す", user_relationships_path(@user.id), method: :delete, class: "btn btn-info" %>
@@ -38,14 +38,14 @@
               <%= link_to "フォローする", user_relationships_path(@user.id), method: :post, class: "btn btn-success" %>
             <% end %>
           <% end %>
-       <% end %> 
+       <% end %>
 
 
       <% if @user == current_user %>
         <p><%= link_to " プロフィール編集 ", edit_user_path(@user), class: "btn btn-sm btn-outline-secondary" %></p>
-        
+
          <p><%= link_to "投稿をする", new_post_path, class: "btn btn-sm btn-outline-secondary p-4" %></p>
-        
+
       <% end %>
     </div>
 
@@ -65,7 +65,9 @@
 
                                             <%= link_to post_path(post.id), class:"custom-link" do %>
 
-                                                <h4> <%= post.caption %></h4>
+                                                <!--<p class="caption-size">  -->
+                                                     <%= post.caption %>
+                                                <!-- </p> -->
                                             <% end %>
                                             <p>ショップ名: <%= post.shop_name %></p>
                                             <p>投稿日時: <%= post.created_at.strftime('%Y/%m/%d') %></p>
@@ -111,7 +113,7 @@
                                            <% end %>
                                        </p>
                                 <% end %>
-                                       
+
                                        <p><%= link_to "#{post.post_comments.count} コメント", post_path(post.id) %></p>
                                        <div class="border-bottom mt-4 mb-4 pb-md-3">
                                          <% if post.user == current_user %>

@@ -27,17 +27,17 @@
                 <% end %>
               <% end %>
 
-            
-                 <%= link_to post_path(post.id), class: "custom-link" do %>
-                    <p class="caption-size" >
-                       <%= post.caption %>
-                    <p>
+
+                 <%= link_to post_path(post.id), class: "custom-link caption-size" do %>
+<!--                    <p class="caption-size" -->
+                      <%= post.caption %>
+<!--                    <p>  -->
                  <% end %>
-              
+
 
               <p>ショップ名: <%= post.shop_name %></p>
               <p>投稿日時: <%= post.created_at.strftime('%Y/%m/%d') %></p>
-              
+
               <p>
                 <% if post.favorited_by?(current_user) %>
                   <%= link_to post_favorite_path(post), class:"link-custom", method: :delete do %>
@@ -49,7 +49,7 @@
                   <% end %>
                 <% end %>
               </p>
-            
+
 
             <div class="border-bottom mt-4 mb-4 ">
               <p><%= link_to "#{post.post_comments.count} コメント", post_path(post.id),class:"link-custom" %></p>
