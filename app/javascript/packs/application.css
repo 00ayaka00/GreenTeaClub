@@ -5,8 +5,7 @@
 }
 
 .link-custom {
-   color: inherit;
- 
+  color: inherit;
 }
 
 .custom-link {
@@ -17,7 +16,7 @@
 .custom-link:hover {
     background-color: #f5f5f5;
     color: #333;
-    
+
   }
 
 .navbar-brand {
