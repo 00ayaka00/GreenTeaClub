@@ -68,7 +68,7 @@
                                             <%= image_tag url_for(image), size: "200x200" %>
 
 
-                                            <%= link_to post_path(post.id) do %>
+                                            <%= link_to post_path(post.id), class:"custom-link" do %>
 
                                                 <h4> <%= post.caption %></h4>
                                             <% end %>
@@ -99,7 +99,7 @@
     　                                      </div>
                                        <% end %>
                                 <% else %>
-                                       <%= link_to post_path(post.id) do %>
+                                       <%= link_to post_path(post.id), class:"link-custom" do %>
 
                                            <h4><%= post.caption %></h4>
                                        <% end %>

@@ -27,23 +27,23 @@
           <%= form_with model: @post, url: post_path(@post.id), method: :patch do |f| %>
             
             <div class="field">
-              <label for="image">Image</label>
+              <label for="image">画像</label>
               <div><%= f.file_field :image, accept: "image/*" %></div>
             </div>
             <div class="field">
-               <label for="shop_name">Shop Name</label>
-               <div><%= f.text_field :shop_name %></div>    
+               <label for="shop_name">ショップ名</label>
+               <div><%= f.text_field :shop_name, placeholder:"ショップ名を入力", size: "58" %></div>    
             </div>
 
             <div class="field">
-               <label for="caption">Introduction</label>
-               <div><%= f.text_area :caption %></div>
+               <label for="caption">説明文</label>
+               <div><%= f.text_area :caption, placeholder:"あなたの好きを共有してみんなに共有しよう", size: "60" %></div>
             </div>
   
             <div class="form-group">
-              <%= f.submit "更新" %>
+              <input type="submit" name="commit" value="更新" class="btn btn-primary" data-disable-with="更新中">
             </div>
   
-            <%= link_to "Back", user_path(@post.user.id), class: "hoge" %></br>
+            <%= link_to "マイページへ戻る", user_path(@post.user.id), class: "link-custom hoge" %></br>
          <% end %>
 </main>
