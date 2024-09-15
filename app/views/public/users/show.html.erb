@@ -45,11 +45,11 @@
       <% if @user == current_user %>
         <p><%= link_to " プロフィール編集 ", edit_user_path(@user), class: "btn btn-sm btn-outline-secondary" %></p>
         
-         <li>
+         <p>
              <%= link_to new_post_path, class: "btn btn-sm btn-outline-secondary p-3" do %>
                  <i class="fa-solid fa-pen"></i> 投稿をする
              <% end %>
-         </li>
+         </p>
         
       <% end %>
     </div>
@@ -110,12 +110,13 @@
                                                <%= link_to post_favorite_path(post), method: :delete do %>
                                                    <i class="fa-solid fa-thumbs-up"></i><%= post.favorites.count %> いいね
                                            <% end %>
-                <% else %>
-                  <%= link_to post_favorite_path(post), method: :post do %>
-                    <i class="fa-regular fa-thumbs-up"></i> <%= post.favorites.count %> いいね
-                  <% end %>
-                <% end %>
-              </p>
+                                <% else %>
+                                           <%= link_to post_favorite_path(post), method: :post do %>
+                                               <i class="fa-regular fa-thumbs-up"></i> <%= post.favorites.count %> いいね
+                                           <% end %>
+                                       </p>
+                                <% end %>
+                                       
                                        <p><%= link_to "#{post.post_comments.count} コメント", post_path(post.id) %></p>
                                        <div class="border-bottom mt-4 mb-4 pb-md-3">
                                          <% if post.user == current_user %>

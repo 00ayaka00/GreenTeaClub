@@ -14,10 +14,11 @@ class Admin::SessionsController < Devise::SessionsController
   #   super
   # end
 
-  # DELETE /resource/sign_out
-  # def destroy
+  #DELETE /resource/sign_out
+  #def destroy
   #   super
-  # end
+  #end
+ 
 
   protected
 

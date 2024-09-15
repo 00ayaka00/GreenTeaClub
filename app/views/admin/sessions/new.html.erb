@@ -1,14 +1,21 @@
-<h2>Log in</h2>
+
+<div class="containar px-5 px-sm-8">
+  <div class="row">
+    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+
+
+
+<h2>管理者ログイン</h2>
 
 <%= form_with model: @admin, url: session_path(resource_name), local: true do |f| %>
   <div class="field">
     <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email",size: "58" %>
   </div>
 
   <div class="field">
     <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
+    <%= f.password_field :password, autocomplete: "current-password",size: "58" %>
   </div>
 
   <% if devise_mapping.rememberable? %>
@@ -19,8 +26,12 @@
   <% end %>
 
   <div class="actions">
-    <%= f.submit "Log in" %>
+    <%= f.submit "ログイン" %>
   </div>
 <% end %>
+</div>
+</div>
+</div>
+
 
 <%= render "admin/shared/links" %>
