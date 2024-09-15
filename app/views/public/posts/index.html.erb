@@ -29,7 +29,9 @@
 
             
                  <%= link_to post_path(post.id), class: "custom-link" do %>
-                    <h5><%= post.caption %></h5>
+                    <p class="caption-size" >
+                       <%= post.caption %>
+                    <p>
                  <% end %>
               
 
