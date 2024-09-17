@@ -4,7 +4,7 @@
     <%= flash[:notice] %>
   </p>
 
-  <div class="container px-6 px-sm-0">
+  <div class="container px-5 px-sm-0">
     <div class="row">
       <img src="<%= asset_path('hilla-5419527_1280.jpg') %>" alt="画像の説明">
 
@@ -21,13 +21,13 @@
             <div class="mx-5">
               <% if post.get_image.present? %>
                 <% post.get_image.each do |image| %>
-                  <%= image_tag url_for(image), size: "500x500", alt: "投稿画像" %>
+                  <%= image_tag url_for(image), class: "index-post-img", alt: "投稿画像" %>
                 <% end %>
               <% end %>
 
               <div>
                  <%= link_to post_path(post.id), class: "custom-link caption-size" do %>
-                      <%= post.caption %>
+                       <%=  simple_format(post.caption, sanitize: true)  %>
                  <% end %>
               </div>
 
