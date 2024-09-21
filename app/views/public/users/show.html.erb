@@ -1,7 +1,7 @@
 <p id ="notice">
     <%= flash[:notice] %>
 </p>
-<div class="containar px-5 px-sm-0">
+<div class="container px-5 px-sm-0">
   <div class="row mx-5">
     <div class="col-md-3"  style="text-align: center;">
 
@@ -51,87 +51,28 @@
       <% end %>
     </div>
 
-     <div class="col-md-8 offset-md-1">
-         <h4>投稿一覧</h4>
-         <div class="border-bottom mt-4 mb-4"></div>
-              <div class="table table-inverse taxt-wrap" style="word-wrap: break-word;">
+    <div class="col-md-8 offset-md-1">
+       <h4>Post List</h4>
+       <div class="border-bottom mt-4 mb-4"></div>
+       <div class="table table-inverse text-wrap" style="word-wrap: break-word;">
+            <% @posts.each do |post| %>
+            
+                  <%= render 'post', post: post %>
+                  
+                  <div class="border-bottom mt-4 mb-4">
+                      <% if post.user == current_user %>
+                          <table>
+                              <tr>
+                                  <td><%= link_to "Edit", edit_post_path(post), class: "btn btn-sm btn-success" %></td>
+                                  <td><%= link_to "Destroy", post_path(post), class: "btn btn-sm btn-danger", method: :delete, "data-confirm" => "本当に消しますか?" %></td>
+                              </tr>
+                         </table>
+                      <% end %>
+                  </div>
+            <% end %>
+            <%= paginate @posts %>
+       </div>
 
-
-                        <% @posts.each do |post| %>
-                            <div>
-                                <% if post.get_image.present? %>
-                                       <% post.get_image.each do |image| %>
-
-                                            <p><%= image_tag url_for(image), size: "200x200" %></p>
-
-
-                                            <%= link_to post_path(post.id), class:"link-custom caption-size" do %>
-                                                     <%= post.caption %>
-                                            <% end %>
-                                            <p>ショップ名: <%= post.shop_name %></p>
-                                            <p>投稿日時: <%= post.created_at.strftime('%Y/%m/%d') %></p>
-                                            <p>
-                                               <% if post.favorited_by?(current_user) %>
-                                                     <%= link_to post_favorite_path(post), method: :delete do %>
-                                                         <i class="fa-solid fa-thumbs-up"></i><%= post.favorites.count %> いいね
-                                                     <% end %>
-                                               <% else %>
-                                                     <%= link_to post_favorite_path(post), method: :post do %>
-                                                         <i class="fa-regular fa-thumbs-up"></i> <%= post.favorites.count %> いいね
-                                                     <% end %>
-                                               <% end %>
-                                            </p>
-                                            <p><%= link_to "#{post.post_comments.count} コメント", post_path(post.id) %></p>
-                                            <div class="border-bottom mt-4 mb-4">
-
-                                              <% if post.user == current_user %>
-                                              <table>
-                                                <tr>
-     　                                          <td><%= link_to "Edit", edit_post_path(post), class: "btn btn-sm btn-success" %></td>
-      　                                         <td><%= link_to "Destroy", post_path(post), class: "btn btn-sm btn-danger", method: :delete, "data-confirm" => "本当に消しますか?" %></td>
-      　                                         </tr>
-                                              </table>
-    　                                         <% end %>
-    　                                      </div>
-                                       <% end %>
-                                <% else %>
-                                       <%= link_to post_path(post.id), class:"link-custom caption-size" do %>
-
-                                           <%= post.caption %>
-                                       <% end %>
-                                       <p>ショップ名: <%= post.shop_name %></p>
-                                       <p>投稿日時: <%= post.created_at.strftime('%Y/%m/%d') %></p>
-                                       <p>
-                                           <% if post.favorited_by?(current_user) %>
-                                               <%= link_to post_favorite_path(post), method: :delete do %>
-                                                   <i class="fa-solid fa-thumbs-up"></i><%= post.favorites.count %> いいね
-                                           <% end %>
-                                <% else %>
-                                           <%= link_to post_favorite_path(post), method: :post do %>
-                                               <i class="fa-regular fa-thumbs-up"></i> <%= post.favorites.count %> いいね
-                                           <% end %>
-                                       </p>
-                                <% end %>
-                                       
-                                       <p><%= link_to "#{post.post_comments.count} コメント", post_path(post.id) %></p>
-                                       <div class="border-bottom mt-4 mb-4 pb-md-3">
-                                         <% if post.user == current_user %>
-                                            <table>
-                                                <tr>
-     　                                          <td><%= link_to "Edit", edit_post_path(post), class: "btn btn-sm btn-success" %></td>
-      　                                         <td><%= link_to "Destroy", post_path(post), class: "btn btn-sm btn-danger", method: :delete, "data-confirm" => "本当に消しますか?" %></td>
-      　                                         </tr>
-                                            </table>
-                                         <% end %>
-                                       </div>
-
-                                <% end %>
-
-                            </div>
-                        <% end %>
-                        <%= paginate @posts %>
-
-              </div>
-        </div>
-     </div>
+    </div>
+   </div>
 </div>

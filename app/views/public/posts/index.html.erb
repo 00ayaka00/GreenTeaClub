@@ -18,37 +18,8 @@
                 <%= post.user.name %>
             <% end %>
 
-            <div class="mx-5">
-              <% if post.get_image.present? %>
-                <% post.get_image.each do |image| %>
-                  <%= image_tag url_for(image), class: "index-post-img", alt: "投稿画像" %>
-                <% end %>
-              <% end %>
-
-              <div>
-                 <%= link_to post_path(post.id), class: "custom-link caption-size" do %>
-                       <%=  simple_format(post.caption, sanitize: true)  %>
-                 <% end %>
-              </div>
-
-                 <p>ショップ名: <%= post.shop_name %></p>
-                 <p>投稿日時: <%= post.created_at.strftime('%Y/%m/%d') %></p>
-
-                 <p>
-                    <% if post.favorited_by?(current_user) %>
-                       <%= link_to post_favorite_path(post), class:"link-custom", method: :delete do %>
-                          <i class="fa-solid fa-thumbs-up"></i><%= post.favorites.count %> いいね
-                       <% end %>
-                    <% else %>
-                       <%= link_to post_favorite_path(post), class:"link-custom", method: :post do %>
-                          <i class="fa-regular fa-thumbs-up"></i> <%= post.favorites.count %> いいね
-                       <% end %>
-                    <% end %>
-                 </p>
-             
-                 <div class="border-bottom mt-4 mb-4 ">
-                      <%= link_to "#{post.post_comments.count} コメント", post_path(post.id),class:"link-custom" %>
-                 </div>
+            <div class="border-bottom mt-4 mb-4">
+             <%= render 'public/users/post', post: post %>
             </div>
           </div>
         <% end %>
