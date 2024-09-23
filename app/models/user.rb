@@ -15,6 +15,11 @@ class User < ApplicationRecord
    validates :name, length: { in: 2..20 }
    validates :introduction, length: { maximum: 50 }
    
+   before_validation :remove_newlines
+    def remove_newlines
+       self.introduction = introduction.gsub(/[\r\n]+/, '')
+    end
+   
   
   has_many :active_relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
   

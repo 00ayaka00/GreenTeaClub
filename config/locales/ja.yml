@@ -1,0 +1,32 @@
+ja:
+  activerecord:
+    models:
+      post: "投稿"
+      user: "ユーザー"
+    attributes:
+      post:
+        shop_name: "ショップ名"
+        caption: "説明"
+      user:
+        email: "メールアドレス"
+        name: "名前"
+        introduction: "自己紹介文"
+        
+    errors:
+      models:
+        post:
+          attributes:
+            shop_name:
+              blank: "を入力してください"
+            caption:
+              blank: "を入力してください"
+        user:
+          attributes:
+            email:
+              blank: "を入力してください"
+            name:
+              blank: "を入力してください"
+              too_short: "は%{count}文字以上で入力してください"
+              too_long: "は%{count}文字以内で入力してください"
+            introduction:
+              too_long: "は%{count}文字以内で入力してください"
