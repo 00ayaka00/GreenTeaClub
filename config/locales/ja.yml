@@ -30,3 +30,12 @@ ja:
               too_long: "は%{count}文字以内で入力してください"
             introduction:
               too_long: "は%{count}文字以内で入力してください"
+              
+    datetime:
+      distance_in_words:
+        x_minutes:
+          one: "1分"
+          other: "%{count}分"
+        about_x_hours:
+          one: "約1時間"
+          other: "約%{count}時間"

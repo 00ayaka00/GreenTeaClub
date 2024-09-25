@@ -7,6 +7,8 @@ class User < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_many :post_comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
+  has_many :active_notifications, class_name: 'Notification', foreign_key: 'visitor_id', dependent: :destroy
+  has_many :passive_notifications, class_name: 'Notification', foreign_key: 'visited_id', dependent: :destroy
   
   has_one_attached :profile_image
   
@@ -16,9 +18,6 @@ class User < ApplicationRecord
    validates :introduction, length: { maximum: 50 }
    
    before_validation :remove_newlines
-    def remove_newlines
-       self.introduction = introduction.gsub(/[\r\n]+/, '')
-    end
    
   
   has_many :active_relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
@@ -68,6 +67,31 @@ class User < ApplicationRecord
     else
       @user = User.all
     end
+   end
+   
+   def create_notification_follow!(current_user)
+    temp = Notification.where(["visitor_id = ? and visited_id = ? and action = ? ",current_user.id, id, 'follow'])
+    if temp.blank?
+      notification = current_user.active_notifications.new(
+        visited_id: id,
+        action: 'follow'
+      )
+      notification.save if notification.valid?
+    end
+   end
+   
+   def avatar_url
+    if profile_image.attached?
+      Rails.application.routes.url_helpers.rails_blob_url(profile_image, only_path: true)
+    else
+      # デフォルト画像のパスを指定
+      Rails.root.join('app/assets/images/heart-9051418_1280.webp')
+    end
+   end
+   
+   def remove_newlines
+   return if introduction.nil? # introductionがnilの場合は何もしない
+    self.introduction = introduction.gsub(/[\r\n]+/, '')
   end
   
  # def get_profile_image(width, height)

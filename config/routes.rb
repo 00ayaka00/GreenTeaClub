@@ -11,6 +11,8 @@ Rails.application.routes.draw do
 
    get '/.env', to: 'your_controller#your_action'
    post '/', to: 'your_controller#your_action'
+   
+   resources :notifications, only: :index
 
  scope module: :public do
 
@@ -23,8 +25,8 @@ Rails.application.routes.draw do
         get 'ranking'  
        end
        resources :users, only: [:show]
-      resource :favorite, only: [:create, :destroy]
-      resources :post_comments, only: [:create, :destroy]
+       resource :favorite, only: [:create, :destroy]
+       resources :post_comments, only: [:create, :destroy]
   end
   resources :users, only: [:show, :index, :edit, :update] do
     member do
