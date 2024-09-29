@@ -4,7 +4,7 @@
 <div class="col-md-6 mx-auto">
   <div class="form-inline">
     <span>
-      <%= link_to user_path(visitor), class: "link-custam" do %>
+      <%= link_to user_path(visitor), class:"link-custom" do %>
           <%= image_tag visitor.avatar_url, class: "icon_mini" %>
           <strong><%= visitor.name %></strong>
       <% end %>
@@ -14,19 +14,10 @@
       <% when 'follow' %>
         あなたをフォローしました
       <% when 'favorite' %>
-        <%= link_to 'あなたの投稿', notification.post, style: "font-weight: bold;" %>
+        <%= link_to 'あなたの投稿', notification.post, class:"link-custom", style: "font-weight: bold;" %>
         にいいねしました
       <% when 'post_comment' %>
-        <% if notification.post.user_id == visited.id %>
-          <%= link_to "あなたの投稿", notification.post, style: "font-weight: bold;" %>
-        <% else %>
-          <span>
-            <%= link_to post_path(notification.post) do %>
-              <%= image_tag avatar_url(notification.post.user).to_s, class: "icon_mini" %>
-              <strong><%= notification.post.user.name %>さんの投稿</strong>
-            <% end %>
-          </span>
-        <% end %>
+        <%= link_to "あなたの投稿", notification.post, class:"link-custom", style: "font-weight: bold;" %>
         にコメントしました
       <% end %>
     </span>
@@ -34,9 +25,32 @@
       <%= PostComment.find_by(id: notification.post_comment_id)&.comment %>
     </p>
   </div>
-
+  
   <div class="small text-muted text-right">
-    <%= time_ago_in_words(notification.created_at).upcase %>
+     <% time_difference = Time.current - notification.created_at %>
+     <% years = (time_difference / 1.year).floor %>
+     <% months = (time_difference / 1.month).floor %>
+     <% weeks = (time_difference / 1.week).floor %>
+     <% days = (time_difference / 1.day).floor %>
+     <% hours = (time_difference / 1.hour).floor %>
+     <% minutes = (time_difference / 60).floor %>
+
+     <% time_ago = 
+        if years > 0
+          "#{years}年#{months % 12}ヶ月前"
+        elsif months > 0
+          "#{months}ヶ月#{weeks % 4}週間前"
+        elsif weeks > 0
+          "#{weeks}週間#{days % 7}日前"
+        elsif days > 0
+          "#{days}日#{hours % 24}時間前"
+        elsif hours > 0
+          "#{hours}時間#{minutes % 60}分前"
+        else
+          "#{minutes}分前"
+         end %>
+
+     <%= time_ago.upcase %>
   </div>
   <hr>
 </div>
