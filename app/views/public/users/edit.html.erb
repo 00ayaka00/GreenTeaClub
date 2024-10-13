@@ -1,13 +1,14 @@
-<p id ="notice">
-    <%= flash[:notice] %>
-</p>
 
 <div class="containar px-5 px-sm-8">
     <div class="row">
+        <p id ="notice">
+            <%= flash[:notice] %>
+        </p>
+
         <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
              <div class="errors" style="color: red;">
                  <% if @user.errors.any? %>
-                      <%= @user.errors.count %>件のエラー %>
+                      <%= @user.errors.count %>件のエラー
                       <div>
                           <% @user.errors.full_messages.each do |message| %>
                               <p><%= message %></p>

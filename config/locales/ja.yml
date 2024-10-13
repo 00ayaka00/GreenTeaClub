@@ -11,7 +11,7 @@ ja:
         email: "メールアドレス"
         name: "名前"
         introduction: "自己紹介文"
-        
+
     errors:
       models:
         post:
@@ -30,7 +30,7 @@ ja:
               too_long: "は%{count}文字以内で入力してください"
             introduction:
               too_long: "は%{count}文字以内で入力してください"
-              
+
     datetime:
       distance_in_words:
         x_minutes:
@@ -39,3 +39,7 @@ ja:
         about_x_hours:
           one: "約1時間"
           other: "約%{count}時間"
+
+    user:
+      signed_in: 'サインインしました。'
+      signed_out: 'サインアウトしました。'

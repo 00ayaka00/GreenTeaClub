@@ -6,9 +6,9 @@ class Public::FavoritesController < ApplicationController
 
     if favorite.save
       post.create_notification_favorite!(current_user)
-      redirect_to post_path(post), notice: 'Favorite was successfully created.'
+      redirect_to post_path(post), notice: 'いいねを登録しました'
     else
-      redirect_to post_path(post), alert: 'Failed to create favorite.'
+      redirect_to post_path(post), alert: 'いいねを登録できませんでした'
     end
   end
 
@@ -17,9 +17,9 @@ class Public::FavoritesController < ApplicationController
     favorite = current_user.favorites.find_by(post_id: post.id)
     
     if favorite&.destroy
-      redirect_to post_path(post), notice: 'Favorite was successfully removed.'
+      redirect_to post_path(post)
     else
-      redirect_to post_path(post), alert: 'Failed to remove favorite.'
+      redirect_to post_path(post)
     end
   end
 
