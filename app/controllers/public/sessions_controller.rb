@@ -11,6 +11,17 @@ class Public::SessionsController < Devise::SessionsController
   def after_sign_out_path_for(resource)
     root_path
   end
+  
+  def create
+    self.resource = resource_class.new(sign_in_params)
+
+    if resource.valid?
+      super
+    else
+      flash.now[:alert] = resource.errors.full_messages.join(", ")
+      render :new
+    end
+  end
   # GET /resource/sign_in
   # def new
   #   super

@@ -6,13 +6,8 @@
       </p>
       <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0">
          <div class="errors" style="color: red;" >
-             <% if @user.errors.any? %>
-                <%= @user.errors.count %>件の
-                <u1>
-                  <% @user.errors.full_messages.each do |message| %>
-                     <li><%= message %></li>
-                  <% end %>
-                </u1>
+             <% if flash[:alert] %>
+                <%= flash[:alert] %>
              <% end %>
          </div>
          <h2>ログイン</h2>
