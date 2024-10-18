@@ -24,10 +24,14 @@ ja:
           attributes:
             email:
               blank: "を入力してください"
+              taken: "はすでに使用されています"
             name:
               blank: "を入力してください"
               too_short: "は%{count}文字以上で入力してください"
               too_long: "は%{count}文字以内で入力してください"
+            password:
+              blank: "を入力してください"
+              too_short: "は%{count}文字以上で入力してください"
             introduction:
               too_long: "は%{count}文字以内で入力してください"
 
@@ -43,7 +47,7 @@ ja:
     user:
       signed_in: 'サインインしました。'
       signed_out: 'サインアウトしました。'
-    
+
   support:
     array:
       words_connector: "、"
@@ -53,6 +57,6 @@ ja:
   devise:
     failure:
       unauthorized: "ログインに失敗しました。メールアドレスまたはパスワードを確認してください。"
-  
+
   user:
     not_found_in_database: "このメールアドレスは登録されていません。"

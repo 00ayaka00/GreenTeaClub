@@ -15,6 +15,7 @@ class User < ApplicationRecord
    validates :email, presence: true
    validates :name, presence: true
    validates :name, length: { in: 2..20 }
+   validates :password, presence: true, length: { minimum: 6 }, if: :password_required?
    validates :introduction, length: { maximum: 50 }
    
    before_validation :remove_newlines

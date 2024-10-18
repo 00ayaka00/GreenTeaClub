@@ -12,10 +12,10 @@ class Public::SessionsController < Devise::SessionsController
     root_path
   end
   
-  def create
+ def create
     self.resource = resource_class.new(sign_in_params)
 
-    if resource.valid?
+    if resource.valid?(:database_authenticatable) # メールアドレスとパスワードのバリデーションのみを実行
       super
     else
       flash.now[:alert] = resource.errors.full_messages.join(", ")

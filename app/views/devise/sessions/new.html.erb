@@ -5,11 +5,16 @@
         <%= flash[:notice] %>
       </p>
       <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0">
-         <div class="errors" style="color: red;" >
-             <% if flash[:alert] %>
-                <%= flash[:alert] %>
-             <% end %>
-         </div>
+         <% if @user.errors.any? %>
+            <div class="errors" style="color: red; margin-bottom: 20px;">
+               <h4>エラーが発生しました:</h4>
+               <ul>
+                   <% @user.errors.full_messages.each do |message| %>
+                     <li><%= message %></li>
+                   <% end %>
+                </ul>
+            </div>
+  <% end %>
          <h2>ログイン</h2>
              <%= form_with model: @user, url: user_session_path do |f| %>
                  <div class="field">
