@@ -1,4 +1,9 @@
 ja:
+  devise:
+    sessions:
+      signed_in: 'サインインしました'
+      signed_out: 'サインアウトしました'
+
   activerecord:
     models:
       post: "投稿"
@@ -44,14 +49,8 @@ ja:
           one: "約1時間"
           other: "約%{count}時間"
 
-    user:
-      signed_in: 'サインインしました。'
-      signed_out: 'サインアウトしました。'
-
   support:
     array:
       words_connector: "、"
       two_words_connector: "と"
       last_word_connector: "と"
-      
-      
