@@ -13,15 +13,20 @@ class Public::SessionsController < Devise::SessionsController
   end
   
  def create
-    self.resource = resource_class.new(sign_in_params)
+  self.resource = warden.authenticate(auth_options) # Deviseの認証を使用
 
-    if resource.valid?(:database_authenticatable) # メールアドレスとパスワードのバリデーションのみを実行
-      super
-    else
-      flash.now[:alert] = resource.errors.full_messages.join(", ")
-      render :new
-    end
+  if resource.present?
+    set_flash_message!(:notice, :signed_in) if is_navigational_format?
+    sign_in(resource_name, resource)
+    yield resource if block_given?
+    respond_with resource, location: after_sign_in_path_for(resource)
+  else
+    @user = User.new(sign_in_params) # 新しいユーザーオブジェクトを作成
+    @user.errors.add(:base, 'メールアドレスまたはパスワードが正しくありません。') # エラーメッセージを追加
+    flash.now[:alert] = 'メールアドレスまたはパスワードが正しくありません。'
+    render :new
   end
+end
   # GET /resource/sign_in
   # def new
   #   super

@@ -7,12 +7,12 @@
       <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0">
          <% if @user.errors.any? %>
             <div class="errors" style="color: red; margin-bottom: 20px;">
-               <h4>エラーが発生しました:</h4>
-               <ul>
+               <h5>エラーが発生しました</h5>
+               <div>
                    <% @user.errors.full_messages.each do |message| %>
-                     <li><%= message %></li>
+                     <%= message %>
                    <% end %>
-                </ul>
+                </div>
             </div>
   <% end %>
          <h2>ログイン</h2>
