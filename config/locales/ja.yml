@@ -1,8 +1,11 @@
 ja:
   devise:
     sessions:
-      signed_in: 'サインインしました'
-      signed_out: 'サインアウトしました'
+      signed_in: "サインインしました"
+      signed_out: "サインアウトしました"
+    
+    registrations: 
+      signed_up: "新規登録されました"
 
   activerecord:
     models:
