@@ -41,7 +41,7 @@ class Post < ApplicationRecord
   
   def create_notification_favorite!(current_user)
     # すでに「いいね」されているか検索
-    temp = Notification.where(["visitor_id = ? and visited_id = ? and post_id = ? and action = ? ", current_user.id, user_id, id, 'like'])
+    temp = Notification.where(["visitor_id = ? and visited_id = ? and post_id = ? and action = ? ", current_user.id, user_id, id, 'favorite'])
     # いいねされていない場合のみ、通知レコードを作成
     if temp.blank?
       notification = current_user.active_notifications.new(
@@ -57,17 +57,17 @@ class Post < ApplicationRecord
     end
   end
   
+  
  def create_notification_post_comment!(current_user, post_comment_id)
+   
   temp_ids = PostComment.select(:user_id).where(post_id: id).where.not(user_id: current_user.id).distinct
   temp_ids.each do |temp_id|
     Rails.logger.debug "Sending notification to user: #{temp_id['user_id']}"
     save_notification_post_comment!(current_user, post_comment_id, temp_id['user_id'])
   end
-  if temp_ids.blank?
-    Rails.logger.debug "No other comments found, notifying post owner."
-    save_notification_post_comment!(current_user, post_comment_id, user_id)
-  end
-end
+  save_notification_post_comment!(current_user, post_comment_id, user_id) if temp_ids.blank?
+ end
+ 
 
   def save_notification_post_comment!(current_user, post_comment_id, visited_id)
     # コメントは複数回することが考えられるため、１つの投稿に複数回通知する
